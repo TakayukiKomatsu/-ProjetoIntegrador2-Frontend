@@ -1,9 +1,3 @@
 <template>
-  <p>Default route</p>
+  <EventsTemplate />
 </template>
-
-<script>
-export default {}
-</script>
-
-<style></style>
