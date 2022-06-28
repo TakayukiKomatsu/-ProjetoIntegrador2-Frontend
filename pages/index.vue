@@ -1,5 +1,7 @@
 <template>
-  <v-row justify="center" align="center"> Hello World </v-row>
+  <v-row justify="center" align="center">
+    Projeto Integrador 2:
+  </v-row>
 </template>
 
 <script>

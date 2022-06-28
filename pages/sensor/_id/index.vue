@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <p>dynamic route</p>
+</template>
 
 <script>
 export default {}

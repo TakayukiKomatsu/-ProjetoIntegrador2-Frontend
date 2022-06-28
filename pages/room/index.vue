@@ -1,6 +1,6 @@
 <template>
   <v-container class="fill-height align-start" fluid>
-    <v-btn color="success mb-4" nuxt to="/room/newRoom">
+    <v-btn color="success mb-4" nuxt to="/room/new">
       <v-icon> mdi-plus </v-icon>
       Adicionar nova sala</v-btn
     >
