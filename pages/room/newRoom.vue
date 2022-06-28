@@ -3,44 +3,38 @@
     <v-container fluid>
       <v-col sm="12" md="8" lg="8" centered>
         <v-text-field
-          name="diaEvent"
-          label="Dia do evento"
+          name="descricao"
+          label="Descriçao da sala"
           required
-          v-model="diaEvent"
+          v-model="descricao"
         ></v-text-field>
         <v-text-field
-          name="horaInicio"
-          label="Hora de inicio"
+          name="estado"
+          label="Estado"
           required
-          v-model="horaInicio"
+          v-model="estado"
         ></v-text-field>
         <v-text-field
-          name="horaTermino"
-          label="Hora do termino"
+          name="cidade"
+          label="Cidade"
           required
-          v-model="horaTermino"
+          v-model="cidade"
+        ></v-text-field>
+         <v-text-field
+          name="pais"
+          label="País"
+          required
+          v-model="pais"
         ></v-text-field>
         <v-text-field
-          name="qtdePessoas"
-          label="Quantidade de pessoas"
+          name="salaLocal"
+          label="Local da sala"
           required
-          v-model="qtdePessoas"
-          type="number"
+          v-model="salaLocal"
         ></v-text-field>
-        <v-text-field
-          name="tempDesejada"
-          label="Temperatura desejada"
-          required
-          v-model="tempDesejada"
-        ></v-text-field>
-        <v-autocomplete
-          :items="items"
-          v-model="selectedRoom"
-          placeholder="Escolha a sala"
-        ></v-autocomplete>
       </v-col>
 
-      <v-btn color="primary" @click="create">Criar evento</v-btn>
+      <v-btn color="primary" @click="create">Criar Sala</v-btn>
     </v-container>
   </v-form>
 </template>
@@ -49,13 +43,11 @@
 export default {
   data() {
     return {
-      diaEvent: '',
-      horaInicio: '',
-      horaTermino: '',
-      qtdePessoas: '',
-      tempDesejada: '',
-      selectedRoom: '',
-      itemsList: [],
+      descricao: '',
+      cidade: '',
+      estado: '',
+      pais: '',
+      salaLocal: '',
     }
   },
   async created() {
@@ -70,18 +62,13 @@ export default {
     async create() {
       try {
         const body = {
-        "diaEvent": this.diaEvent,
-        "horaInicio": this.horaInicio,
-        "horaTermino": this.horaTermino,
-        "qtdePessoas": this.qtdePessoas,
-        "tempDesejada": Number(this.tempDesejada),
-        "Room":{
-          "connect": {
-            "id": this.selectedRoom
-          }
-        }
+        "descricao": this.descricao,
+        "cidade": this.cidade,
+        "estado": this.estado,
+        "pais": this.pais,
+        "salaLocal": this.salaLocal,
       }
-      await this.$axios.post('/events', body)
+      await this.$axios.post('/rooms', body)
       } catch (error) {
         console.log(error)
       }
