@@ -17,6 +17,7 @@
               label="Hora de inicio"
               format="24hr"
               required
+              :max="horaTermino"
               v-model="horaInicio"
               color="green lighten-1"
             ></v-time-picker>
@@ -29,6 +30,7 @@
               label="Hora de termino"
               format="24hr"
               required
+              :min="horaInicio"
               v-model="horaTermino"
               header-color="primary"
             ></v-time-picker>
