@@ -1,14 +1,34 @@
 <template>
-  <v-calendar
-    ref="calendar"
-    v-model="value"
-    locale="pt-BR"
-    :type="type"
-    :events="events"
-    :event-overlap-mode="mode"
-    :event-overlap-threshold="30"
-    mode="stack"
-  ></v-calendar>
+  <div>
+    <v-sheet tile height="54" class="d-flex">
+      <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
+        <v-icon>mdi-chevron-left</v-icon>
+      </v-btn>
+      <v-select
+        v-model="type"
+        :items="types"
+        dense
+        outlined
+        hide-details
+        class="ma-2"
+        label="type"
+      ></v-select>
+      <v-btn icon class="ma-2" @click="$refs.calendar.next()">
+        <v-icon>mdi-chevron-right</v-icon>
+      </v-btn>
+    </v-sheet>
+    <v-sheet>
+      <v-calendar
+        ref="calendar"
+        v-model="value"
+        :type="type"
+        :events="events"
+        :event-overlap-mode="mode"
+        :event-overlap-threshold="30"
+        @change="getEvents"
+      ></v-calendar>
+    </v-sheet>
+  </div>
 </template>
 
 <script>
@@ -22,7 +42,8 @@ export default {
   data() {
     return {
       value: '',
-      type: 'week',
+      type: 'month',
+      types: ['month', 'week', 'day', '4day'],
       mode: 'stack',
       events: [],
       colors: [
