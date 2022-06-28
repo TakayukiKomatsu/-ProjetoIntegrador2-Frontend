@@ -8,18 +8,33 @@
           required
           v-model="diaEvent"
         ></v-text-field>
-        <v-text-field
-          name="horaInicio"
-          label="Hora de inicio"
-          required
-          v-model="horaInicio"
-        ></v-text-field>
-        <v-text-field
-          name="horaTermino"
-          label="Hora do termino"
-          required
-          v-model="horaTermino"
-        ></v-text-field>
+
+        <v-row justify="space-around" align="center">
+          <v-col style="width: 350px; flex: 0 1 auto">
+            <h2 class="text-center">HORÁRIO DE INICIO</h2>
+            <v-time-picker
+              name="horaInicio"
+              label="Hora de inicio"
+              format="24hr"
+              required
+              v-model="horaInicio"
+              color="green lighten-1"
+            ></v-time-picker>
+          </v-col>
+
+          <v-col style="width: 350px; flex: 0 1 auto">
+            <h2 class="text-center">HORÁRIO DE TERMINO</h2>
+            <v-time-picker
+              name="horaTermino"
+              label="Hora de termino"
+              format="24hr"
+              required
+              v-model="horaTermino"
+              header-color="primary"
+            ></v-time-picker>
+          </v-col>
+        </v-row>
+
         <v-text-field
           name="qtdePessoas"
           label="Quantidade de pessoas"
