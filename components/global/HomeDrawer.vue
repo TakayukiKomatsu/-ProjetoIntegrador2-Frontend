@@ -19,6 +19,11 @@ export default {
       selectedItem: 0,
       items: [
         {
+          text: 'Home',
+          to: '/',
+          icon: 'mdi-home',
+        },
+        {
           text: 'Eventos',
           to: '/event',
           icon: 'mdi-calendar',
