@@ -2,36 +2,29 @@
   <v-form>
     <v-container fluid>
       <v-col sm="12" md="8" lg="8" centered>
-        <v-text-field
-          name="diaEvent"
-          label="Dia do evento"
+        <v-autocomplete
+          name="tipo"
+          :items="types"
+          label="Tipo do sensor"
           required
-          v-model="diaEvent"
+          v-model="selectedType"
+        ></v-autocomplete>
+        <v-text-field
+          name="temperatura"
+          label="Temperatura"
+          required
+          v-model="temperature"
         ></v-text-field>
         <v-text-field
-          name="horaInicio"
-          label="Hora de inicio"
-          required
-          v-model="horaInicio"
+          name="Leitura"
+          label="Data da leitura"
+          v-model="leitura"
         ></v-text-field>
         <v-text-field
-          name="horaTermino"
-          label="Hora do termino"
+          name="InterLeitura"
+          label="Intervalo de leitura"
           required
-          v-model="horaTermino"
-        ></v-text-field>
-        <v-text-field
-          name="qtdePessoas"
-          label="Quantidade de pessoas"
-          required
-          v-model="qtdePessoas"
-          type="number"
-        ></v-text-field>
-        <v-text-field
-          name="tempDesejada"
-          label="Temperatura desejada"
-          required
-          v-model="tempDesejada"
+          v-model="interLeitura"
         ></v-text-field>
         <v-autocomplete
           :items="items"
@@ -49,13 +42,22 @@
 export default {
   data() {
     return {
-      diaEvent: '',
-      horaInicio: '',
-      horaTermino: '',
-      qtdePessoas: '',
-      tempDesejada: '',
       selectedRoom: '',
       itemsList: [],
+      selectedType: '',
+      temperature: '',
+      leitura: '',
+      interLeitura: '',
+      types: [
+        {
+          text: 'Manual',
+          value: 'Manual',
+        },
+        {
+          text: 'Automático',
+          value: 'Automático',
+        },
+      ],
     }
   },
   async created() {
@@ -70,18 +72,17 @@ export default {
     async create() {
       try {
         const body = {
-        "diaEvent": this.diaEvent,
-        "horaInicio": this.horaInicio,
-        "horaTermino": this.horaTermino,
-        "qtdePessoas": this.qtdePessoas,
-        "tempDesejada": Number(this.tempDesejada),
-        "Room":{
-          "connect": {
-            "id": this.selectedRoom
-          }
+          tipo: this.selectedType,
+          temperatura: Number(this.temperature),
+          leitura: this.leitura,
+          interLeitura: this.interLeitura,
+          Room: {
+            connect: {
+              id: Number(this.selectedRoom),
+            },
+          },
         }
-      }
-      await this.$axios.post('/events', body)
+        await this.$axios.post('/sensors', body)
       } catch (error) {
         console.log(error)
       }

@@ -24,15 +24,7 @@ export default {
   plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: {
-    dirs: [
-      '~/components',
-      { path: '~/components/global', extensions: ['vue'] },
-      { path: '~/components/events', extensions: ['vue'] },
-      { path: '~/components/sensor', extensions: ['vue'] },
-      { path: '~/components/room', extensions: ['vue'] },
-    ],
-  },
+  components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -51,7 +43,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: "https://projeto-integrador2.herokuapp.com/",
+    baseURL: 'https://projeto-integrador2.herokuapp.com/',
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

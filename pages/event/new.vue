@@ -70,18 +70,18 @@ export default {
     async create() {
       try {
         const body = {
-        "diaEvent": this.diaEvent,
-        "horaInicio": this.horaInicio,
-        "horaTermino": this.horaTermino,
-        "qtdePessoas": this.qtdePessoas,
-        "tempDesejada": Number(this.tempDesejada),
-        "Room":{
-          "connect": {
-            "id": this.selectedRoom
-          }
+          diaEvent: this.diaEvent,
+          horaInicio: this.horaInicio,
+          horaTermino: this.horaTermino,
+          qtdePessoas: this.qtdePessoas,
+          tempDesejada: Number(this.tempDesejada),
+          Room: {
+            connect: {
+              id: Number(this.selectedRoom),
+            },
+          },
         }
-      }
-      await this.$axios.post('/events', body)
+        await this.$axios.post('/events', body)
       } catch (error) {
         console.log(error)
       }

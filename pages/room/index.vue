@@ -6,7 +6,7 @@
     >
     <v-data-table :headers="headers" :items="events" class="content">
       <template v-slot:item.actions="{ item }">
-        <v-btn  nuxt icon>
+        <v-btn nuxt icon>
           <v-icon> mdi-pencil </v-icon>
         </v-btn>
       </template>

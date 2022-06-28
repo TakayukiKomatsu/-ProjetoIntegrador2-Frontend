@@ -1,8 +1,8 @@
 <template>
   <v-container class="fill-height align-start" fluid>
-    <v-btn color="success mb-4" nuxt to="/event/new">
+    <v-btn color="success mb-4" nuxt to="/sensor/new">
       <v-icon> mdi-plus </v-icon>
-      Adicionar novo evento</v-btn
+      Adicionar novo Sensor</v-btn
     >
     <v-data-table :headers="headers" :items="events" class="content">
       <template v-slot:item.actions="{ item }">
@@ -24,34 +24,24 @@ export default {
       events: [],
       headers: [
         {
-          text: 'Dia do evento',
+          text: 'Tipo',
           align: 'center',
-          value: 'diaEvent',
+          value: 'tipo',
         },
         {
-          text: 'Inicio',
+          text: 'Temperatura',
           align: 'center',
-          value: 'horaInicio',
+          value: 'temperatura',
         },
         {
-          text: 'Fim',
+          text: 'Leitura',
           align: 'center',
-          value: 'horaTermino',
+          value: 'leitura',
         },
         {
-          text: 'Temperatura externa',
+          text: 'Intervalo de leitura',
           align: 'center',
-          value: 'tempExterna',
-        },
-        {
-          text: 'Temperatura Desejada',
-          align: 'center',
-          value: 'tempDesejada',
-        },
-        {
-          text: 'Horário do acionamento do ar condicionado',
-          align: 'center',
-          value: 'horaAcionamentoArCondicionado',
+          value: 'interLeitura',
         },
         {
           text: '',
@@ -64,7 +54,7 @@ export default {
   },
   methods: {
     async fetch() {
-      const { data } = await this.$axios.get('/events')
+      const { data } = await this.$axios.get('/sensors')
       this.events = data
     },
   },

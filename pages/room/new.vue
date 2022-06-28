@@ -20,7 +20,7 @@
           required
           v-model="cidade"
         ></v-text-field>
-         <v-text-field
+        <v-text-field
           name="pais"
           label="País"
           required
@@ -62,13 +62,13 @@ export default {
     async create() {
       try {
         const body = {
-        "descricao": this.descricao,
-        "cidade": this.cidade,
-        "estado": this.estado,
-        "pais": this.pais,
-        "salaLocal": this.salaLocal,
-      }
-      await this.$axios.post('/rooms', body)
+          descricao: this.descricao,
+          cidade: this.cidade,
+          estado: this.estado,
+          pais: this.pais,
+          salaLocal: this.salaLocal,
+        }
+        await this.$axios.post('/rooms', body)
       } catch (error) {
         console.log(error)
       }
