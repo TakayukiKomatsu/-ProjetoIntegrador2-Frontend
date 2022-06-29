@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <v-row align="center" class="fill-height">
+    <v-col align="center" >
     <v-sheet tile height="54" class="d-flex">
       <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
         <v-icon>mdi-chevron-left</v-icon>
@@ -28,7 +29,8 @@
         @change="getEvents"
       ></v-calendar>
     </v-sheet>
-  </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
