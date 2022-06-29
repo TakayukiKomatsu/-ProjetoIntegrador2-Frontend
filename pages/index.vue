@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       value: '',
-      type: 'month',
+      type: '4day',
       types: ['month', 'week', 'day', '4day'],
       mode: 'stack',
       events: [],
