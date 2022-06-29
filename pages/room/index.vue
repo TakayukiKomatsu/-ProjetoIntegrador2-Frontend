@@ -4,7 +4,11 @@
       <v-icon> mdi-plus </v-icon>
       Adicionar nova sala</v-btn
     >
-    <v-data-table :headers="headers" :items="events" class="content">
+    <v-data-table
+      :headers="headers"
+      :items="events"
+      class="content fill-height"
+    >
       <template v-slot:item.actions="{ item }">
         <v-btn nuxt icon>
           <v-icon> mdi-pencil </v-icon>

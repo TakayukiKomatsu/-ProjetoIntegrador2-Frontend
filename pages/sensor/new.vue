@@ -1,39 +1,40 @@
 <template>
-  <v-form>
-    <v-container fluid>
-      <v-col sm="12" md="8" lg="8" centered>
-        <v-autocomplete
-          name="tipo"
-          :items="types"
-          label="Tipo do sensor"
-          required
-          v-model="selectedType"
-        ></v-autocomplete>
-        <v-text-field
-          name="temperatura"
-          label="Temperatura"
-          required
-          v-model="temperature"
-        ></v-text-field>
-        <v-text-field
-          name="Leitura"
-          label="Data da leitura"
-          v-model="leitura"
-        ></v-text-field>
-        <v-text-field
-          name="InterLeitura"
-          label="Intervalo de leitura"
-          required
-          v-model="interLeitura"
-        ></v-text-field>
-        <v-autocomplete
-          :items="items"
-          v-model="selectedRoom"
-          placeholder="Escolha a sala"
-        ></v-autocomplete>
-      </v-col>
-
-      <v-btn color="primary" @click="create">Criar evento</v-btn>
+  <v-form class="fill-height">
+    <v-container fluid class="fill-height">
+      <v-row justify="center" class="fill-height">
+        <v-col sm="12" md="8" lg="8" centered>
+          <v-autocomplete
+            name="tipo"
+            :items="types"
+            label="Tipo do sensor"
+            required
+            v-model="selectedType"
+          ></v-autocomplete>
+          <v-text-field
+            name="temperatura"
+            label="Temperatura"
+            required
+            v-model="temperature"
+          ></v-text-field>
+          <v-text-field
+            name="Leitura"
+            label="Data da leitura"
+            v-model="leitura"
+          ></v-text-field>
+          <v-text-field
+            name="InterLeitura"
+            label="Intervalo de leitura"
+            required
+            v-model="interLeitura"
+          ></v-text-field>
+          <v-autocomplete
+            :items="items"
+            v-model="selectedRoom"
+            placeholder="Escolha a sala"
+          ></v-autocomplete>
+          <v-btn color="primary" @click="create">Adicionar sensor</v-btn>
+        </v-col>
+      </v-row>
     </v-container>
   </v-form>
 </template>
