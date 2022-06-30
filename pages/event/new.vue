@@ -3,12 +3,12 @@
     <v-container fluid>
       <v-row justify="center">
         <v-col sm="12" md="8" lg="8" centered>
-          <v-text-field
-            name="diaEvent"
-            label="Dia do evento"
-            required
-            v-model="diaEvent"
-          ></v-text-field>
+          <v-row justify="center">
+            <v-col cols="auto" align-self="center">
+              <h2>Dia do evento</h2>
+              <v-date-picker v-model="diaEvent" locale="pt-BR" :min="today"></v-date-picker>
+            </v-col>
+          </v-row>
 
           <v-row justify="space-around" align="center">
             <v-col style="width: 350px; flex: 0 1 auto">
@@ -106,6 +106,9 @@ export default {
     },
   },
   computed: {
+    today(){
+      return new Date().toISOString().slice(0, 10)
+    },
     items() {
       let item = []
       this.itemsList.forEach((e) => {
