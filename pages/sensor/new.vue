@@ -11,23 +11,6 @@
             label="Tipo do sensor"
             required
           ></v-autocomplete>
-          <v-text-field
-            v-model="temperature"
-            name="temperatura"
-            label="Temperatura"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="leitura"
-            name="Leitura"
-            label="Data da leitura"
-          ></v-text-field>
-          <v-text-field
-            v-model="interLeitura"
-            name="InterLeitura"
-            label="Intervalo de leitura"
-            required
-          ></v-text-field>
           <v-autocomplete
             v-model="selectedRoom"
             :items="items"
@@ -71,7 +54,7 @@ export default {
           value: null,
         }
         aux.value = e.id
-        aux.text = e.descricao
+        aux.text = e.description
         item.push(aux)
       })
       return item
@@ -89,15 +72,8 @@ export default {
     async create() {
       try {
         const body = {
-          tipo: this.selectedType,
-          temperatura: Number(this.temperature),
-          leitura: this.leitura,
-          interLeitura: this.interLeitura,
-          Room: {
-            connect: {
-              id: Number(this.selectedRoom),
-            },
-          },
+          type: this.selectedType,
+          roomId: Number(this.selectedRoom),
         }
         await this.$axios.post('/sensors', body)
       } catch (error) {
