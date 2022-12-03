@@ -10,11 +10,6 @@
       :items="events"
       class="content fill-height"
     >
-      <template #item.actions="{ item }">
-        <v-btn nuxt icon>
-          <v-icon> mdi-pencil </v-icon>
-        </v-btn>
-      </template>
     </v-data-table>
   </v-container>
 </template>
@@ -28,27 +23,27 @@ export default {
         {
           text: 'Descrição',
           align: 'center',
-          value: 'descricao',
+          value: 'description',
         },
         {
           text: 'País',
           align: 'center',
-          value: 'pais',
+          value: 'country',
         },
         {
           text: 'Estado',
           align: 'center',
-          value: 'estado',
+          value: 'state',
         },
         {
           text: 'Cidade',
           align: 'center',
-          value: 'cidade',
+          value: 'city',
         },
         {
           text: 'Local da sala',
           align: 'center',
-          value: 'salaLocal',
+          value: 'address',
         },
       ],
     }
