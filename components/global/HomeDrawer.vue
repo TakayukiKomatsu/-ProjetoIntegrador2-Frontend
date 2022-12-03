@@ -38,6 +38,11 @@ export default {
           to: '/sensor',
           icon: 'mdi-information',
         },
+        {
+          text: 'sensor data',
+          to: '/sensordata',
+          icon: 'mdi-information',
+        },
       ],
     }
   },
