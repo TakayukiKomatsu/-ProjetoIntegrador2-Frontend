@@ -80,11 +80,11 @@ export default {
     async create() {
       try {
         const body = {
-          descricao: this.descricao,
-          cidade: this.cidade,
-          estado: this.estado,
-          pais: this.pais,
-          salaLocal: this.salaLocal,
+          description: this.descricao,
+          city: this.cidade,
+          state: this.estado,
+          country: this.pais,
+          address: this.salaLocal,
         }
         await this.$axios.post('/rooms', body)
       } catch (error) {
@@ -94,5 +94,3 @@ export default {
   },
 }
 </script>
-
-<style></style>
