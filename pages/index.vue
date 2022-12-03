@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { addHours, format } from 'date-fns'
+
 export default {
   name: 'IndexPage',
   layout: 'default',
@@ -63,6 +65,18 @@ export default {
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
     },
+    formatTime(time) {
+      const formatedTIme = format(
+        addHours(new Date(time), 3),
+        'yyyy-MM-dd HH:mm'
+      )
+      console.log(
+        '🚀 ~ file: index.vue:73 ~ formatTime ~ formatedTIme',
+        formatedTIme
+      )
+
+      return formatedTIme
+    },
     async getEvents() {
       const response = await this.$axios.get(`/events`)
       const eventsInfo = response.data
@@ -70,16 +84,18 @@ export default {
 
       for (let count = 0; count < eventsInfo.length; count++) {
         const event = eventsInfo[count]
-        const eventStart = `${event.diaEvent} ${event.horaInicio}`
-        const eventFinish = `${event.diaEvent} ${event.horaTermino}`
+        const eventStart = event.startDate
+        const eventFinish = event.endDate
 
         calendarValues.push({
-          name: null,
-          start: eventStart,
-          end: eventFinish,
+          name: event.description,
+          timed: true,
+          start: this.formatTime(eventStart),
+          end: this.formatTime(eventFinish),
           color: this.colors[this.rnd(0, this.colors.length - 1)],
         })
       }
+
       this.events = calendarValues
     },
   },
