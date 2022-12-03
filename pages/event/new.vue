@@ -1,25 +1,26 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <v-form>
     <v-container fluid>
       <v-row justify="center">
         <v-col sm="12" md="8" lg="8" centered>
           <v-text-field
+            v-model="diaEvent"
             name="diaEvent"
             label="Dia do evento"
             required
-            v-model="diaEvent"
           ></v-text-field>
 
           <v-row justify="space-around" align="center">
             <v-col style="width: 350px; flex: 0 1 auto">
               <h2 class="text-center">HORÁRIO DE INICIO</h2>
               <v-time-picker
+                v-model="horaInicio"
                 name="horaInicio"
                 label="Hora de inicio"
                 format="24hr"
                 required
                 :max="horaTermino"
-                v-model="horaInicio"
                 color="green lighten-1"
               ></v-time-picker>
             </v-col>
@@ -27,33 +28,33 @@
             <v-col style="width: 350px; flex: 0 1 auto">
               <h2 class="text-center">HORÁRIO DE TERMINO</h2>
               <v-time-picker
+                v-model="horaTermino"
                 name="horaTermino"
                 label="Hora de termino"
                 format="24hr"
                 required
                 :min="horaInicio"
-                v-model="horaTermino"
                 header-color="primary"
               ></v-time-picker>
             </v-col>
           </v-row>
 
           <v-text-field
+            v-model="qtdePessoas"
             name="qtdePessoas"
             label="Quantidade de pessoas"
             required
-            v-model="qtdePessoas"
             type="number"
           ></v-text-field>
           <v-text-field
+            v-model="tempDesejada"
             name="tempDesejada"
             label="Temperatura desejada"
             required
-            v-model="tempDesejada"
           ></v-text-field>
           <v-autocomplete
-            :items="items"
             v-model="selectedRoom"
+            :items="items"
             placeholder="Escolha a sala"
           ></v-autocomplete>
           <v-btn color="primary" @click="create">Adicionar evento</v-btn>
@@ -75,6 +76,21 @@ export default {
       selectedRoom: '',
       itemsList: [],
     }
+  },
+  computed: {
+    items() {
+      const item = []
+      this.itemsList.forEach((e) => {
+        const aux = {
+          text: null,
+          value: null,
+        }
+        aux.value = e.id
+        aux.text = e.descricao
+        item.push(aux)
+      })
+      return item
+    },
   },
   async created() {
     try {
@@ -103,21 +119,6 @@ export default {
       } catch (error) {
         console.log(error)
       }
-    },
-  },
-  computed: {
-    items() {
-      let item = []
-      this.itemsList.forEach((e) => {
-        let aux = {
-          text: null,
-          value: null,
-        }
-        aux.value = e.id
-        aux.text = e.descricao
-        item.push(aux)
-      })
-      return item
     },
   },
 }

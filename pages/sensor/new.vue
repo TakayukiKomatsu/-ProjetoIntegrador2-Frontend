@@ -1,35 +1,36 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <v-form class="fill-height">
     <v-container fluid class="fill-height">
       <v-row justify="center" class="fill-height">
         <v-col sm="12" md="8" lg="8" centered>
           <v-autocomplete
+            v-model="selectedType"
             name="tipo"
             :items="types"
             label="Tipo do sensor"
             required
-            v-model="selectedType"
           ></v-autocomplete>
           <v-text-field
+            v-model="temperature"
             name="temperatura"
             label="Temperatura"
             required
-            v-model="temperature"
           ></v-text-field>
           <v-text-field
+            v-model="leitura"
             name="Leitura"
             label="Data da leitura"
-            v-model="leitura"
           ></v-text-field>
           <v-text-field
+            v-model="interLeitura"
             name="InterLeitura"
             label="Intervalo de leitura"
             required
-            v-model="interLeitura"
           ></v-text-field>
           <v-autocomplete
-            :items="items"
             v-model="selectedRoom"
+            :items="items"
             placeholder="Escolha a sala"
           ></v-autocomplete>
           <v-btn color="primary" @click="create">Adicionar sensor</v-btn>
@@ -61,6 +62,21 @@ export default {
       ],
     }
   },
+  computed: {
+    items() {
+      const item = []
+      this.itemsList.forEach((e) => {
+        const aux = {
+          text: null,
+          value: null,
+        }
+        aux.value = e.id
+        aux.text = e.descricao
+        item.push(aux)
+      })
+      return item
+    },
+  },
   async created() {
     try {
       const response = await this.$axios.get('/rooms/description')
@@ -87,21 +103,6 @@ export default {
       } catch (error) {
         console.log(error)
       }
-    },
-  },
-  computed: {
-    items() {
-      let item = []
-      this.itemsList.forEach((e) => {
-        let aux = {
-          text: null,
-          value: null,
-        }
-        aux.value = e.id
-        aux.text = e.descricao
-        item.push(aux)
-      })
-      return item
     },
   },
 }

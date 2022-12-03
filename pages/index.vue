@@ -37,10 +37,6 @@
 export default {
   name: 'IndexPage',
   layout: 'default',
-
-  created() {
-    this.getEvents()
-  },
   data() {
     return {
       value: '',
@@ -59,6 +55,10 @@ export default {
       ],
     }
   },
+
+  created() {
+    this.getEvents()
+  },
   methods: {
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
@@ -66,7 +66,7 @@ export default {
     async getEvents() {
       const response = await this.$axios.get(`/events`)
       const eventsInfo = response.data
-      let calendarValues = []
+      const calendarValues = []
 
       for (let count = 0; count < eventsInfo.length; count++) {
         const event = eventsInfo[count]

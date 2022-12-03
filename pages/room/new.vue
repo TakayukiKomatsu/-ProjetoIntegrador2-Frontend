@@ -1,37 +1,38 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <v-form>
     <v-container fluid>
       <v-row justify="center" class="fill-height">
         <v-col sm="12" md="8" lg="8" centered>
           <v-text-field
+            v-model="descricao"
             name="descricao"
             label="Descriçao da sala"
             required
-            v-model="descricao"
           ></v-text-field>
           <v-text-field
+            v-model="estado"
             name="estado"
             label="Estado"
             required
-            v-model="estado"
           ></v-text-field>
           <v-text-field
+            v-model="cidade"
             name="cidade"
             label="Cidade"
             required
-            v-model="cidade"
           ></v-text-field>
           <v-text-field
+            v-model="pais"
             name="pais"
             label="País"
             required
-            v-model="pais"
           ></v-text-field>
           <v-text-field
+            v-model="salaLocal"
             name="salaLocal"
             label="Local da sala"
             required
-            v-model="salaLocal"
           ></v-text-field>
 
           <v-btn color="primary" @click="create">Adicionar sala</v-btn>
@@ -51,6 +52,21 @@ export default {
       pais: '',
       salaLocal: '',
     }
+  },
+  computed: {
+    items() {
+      const item = []
+      this.itemsList.forEach((e) => {
+        const aux = {
+          text: null,
+          value: null,
+        }
+        aux.value = e.id
+        aux.text = e.descricao
+        item.push(aux)
+      })
+      return item
+    },
   },
   async created() {
     try {
@@ -74,21 +90,6 @@ export default {
       } catch (error) {
         console.log(error)
       }
-    },
-  },
-  computed: {
-    items() {
-      let item = []
-      this.itemsList.forEach((e) => {
-        let aux = {
-          text: null,
-          value: null,
-        }
-        aux.value = e.id
-        aux.text = e.descricao
-        item.push(aux)
-      })
-      return item
     },
   },
 }

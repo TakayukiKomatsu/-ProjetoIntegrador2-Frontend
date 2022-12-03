@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <v-container class="fill-height align-start" fluid>
     <v-btn color="success mb-4" nuxt to="/sensor/new">
@@ -5,8 +6,8 @@
       Adicionar novo Sensor</v-btn
     >
     <v-data-table :headers="headers" :items="events" class="content">
-      <template v-slot:item.actions="{ item }">
-        <v-btn @click="" nuxt icon>
+      <template #item.actions="{ item }">
+        <v-btn nuxt icon @click="">
           <v-icon> mdi-pencil </v-icon>
         </v-btn>
       </template>
@@ -16,9 +17,6 @@
 
 <script>
 export default {
-  created() {
-    this.fetch()
-  },
   data() {
     return {
       events: [],
@@ -51,6 +49,9 @@ export default {
         },
       ],
     }
+  },
+  created() {
+    this.fetch()
   },
   methods: {
     async fetch() {

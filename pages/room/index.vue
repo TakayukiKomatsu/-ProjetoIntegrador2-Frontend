@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <v-container class="fill-height align-start" fluid>
     <v-btn color="success mb-4" nuxt to="/room/new">
@@ -9,7 +10,7 @@
       :items="events"
       class="content fill-height"
     >
-      <template v-slot:item.actions="{ item }">
+      <template #item.actions="{ item }">
         <v-btn nuxt icon>
           <v-icon> mdi-pencil </v-icon>
         </v-btn>
@@ -20,9 +21,6 @@
 
 <script>
 export default {
-  created() {
-    this.fetch()
-  },
   data() {
     return {
       events: [],
@@ -54,6 +52,9 @@ export default {
         },
       ],
     }
+  },
+  created() {
+    this.fetch()
   },
   methods: {
     async fetch() {
