@@ -6,56 +6,56 @@
       Adicionar novo evento</v-btn
     >
     <v-data-table :headers="headers" :items="events" class="content">
-      <template #item.actions="{ item }">
-        <v-btn nuxt icon @click="">
-          <v-icon> mdi-pencil </v-icon>
-        </v-btn>
+      <template #item.startDate="{ item }">
+        {{ new Date(formatTime(item.startDate)).toLocaleString('pt-BR', {}) }}
+      </template>
+      <template #item.endDate="{ item }">
+        {{ new Date(formatTime(item.endDate)).toLocaleString('pt-BR', {}) }}
+      </template>
+
+      <template #item.ACTime="{ item }">
+        {{ new Date(formatTime(item.ACTime)).toLocaleString('pt-BR', {}) }}
       </template>
     </v-data-table>
   </v-container>
 </template>
 
 <script>
+import { addHours } from 'date-fns'
 export default {
   data() {
     return {
       events: [],
       headers: [
         {
-          text: 'Dia do evento',
-          align: 'center',
-          value: 'diaEvent',
-        },
-        {
           text: 'Inicio',
           align: 'center',
-          value: 'horaInicio',
+          value: 'startDate',
         },
         {
-          text: 'Fim',
+          text: 'Término',
           align: 'center',
-          value: 'horaTermino',
+          value: 'endDate',
         },
         {
-          text: 'Temperatura externa',
+          text: 'Descrição',
           align: 'center',
-          value: 'tempExterna',
+          value: 'description',
         },
         {
           text: 'Temperatura Desejada',
           align: 'center',
-          value: 'tempDesejada',
+          value: 'desiredTemperature',
+        },
+        {
+          text: 'Quantidade de pessoas',
+          align: 'center',
+          value: 'amountPeople',
         },
         {
           text: 'Horário do acionamento do ar condicionado',
           align: 'center',
-          value: 'horaAcionamentoArCondicionado',
-        },
-        {
-          text: '',
-          align: 'center',
-          sortable: false,
-          value: 'actions',
+          value: 'ACTime',
         },
       ],
     }
@@ -67,6 +67,9 @@ export default {
     async fetch() {
       const { data } = await this.$axios.get('/events')
       this.events = data
+    },
+    formatTime(time) {
+      return addHours(new Date(time), 3)
     },
   },
 }
