@@ -5,8 +5,16 @@
       <v-row justify="center">
         <v-col sm="12" md="8" lg="8" centered>
           <v-text-field
+            v-model="description"
+            name="description"
+            label="Descrição do evento"
+            required
+          ></v-text-field>
+
+          <v-text-field
             v-model="diaEvent"
             name="diaEvent"
+            type="date"
             label="Dia do evento"
             required
           ></v-text-field>
@@ -65,6 +73,8 @@
 </template>
 
 <script>
+import { parseISO } from 'date-fns'
+
 export default {
   data() {
     return {
@@ -74,6 +84,7 @@ export default {
       qtdePessoas: '',
       tempDesejada: '',
       selectedRoom: '',
+      description: '',
       itemsList: [],
     }
   },
@@ -86,7 +97,7 @@ export default {
           value: null,
         }
         aux.value = e.id
-        aux.text = e.descricao
+        aux.text = e.description
         item.push(aux)
       })
       return item
@@ -104,16 +115,12 @@ export default {
     async create() {
       try {
         const body = {
-          diaEvent: this.diaEvent,
-          horaInicio: this.horaInicio,
-          horaTermino: this.horaTermino,
-          qtdePessoas: this.qtdePessoas,
-          tempDesejada: Number(this.tempDesejada),
-          Room: {
-            connect: {
-              id: Number(this.selectedRoom),
-            },
-          },
+          startDate: parseISO(`${this.diaEvent}T${this.horaInicio}`),
+          endDate: parseISO(`${this.diaEvent}T${this.horaTermino}.000Z`),
+          description: this.description,
+          amountPeople: parseInt(this.qtdePessoas),
+          desiredTemperature: Number(this.tempDesejada),
+          roomId: Number(this.selectedRoom),
         }
         await this.$axios.post('/events', body)
       } catch (error) {
@@ -123,5 +130,3 @@ export default {
   },
 }
 </script>
-
-<style></style>
