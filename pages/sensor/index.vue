@@ -17,9 +17,14 @@ export default {
       events: [],
       headers: [
         {
-          text: 'Temperatura',
+          text: 'ID da sala',
           align: 'center',
           value: 'roomId',
+        },
+{
+          text: 'ID do sensor',
+          align: 'center',
+          value: 'id',
         },
         {
           text: 'Tipo',
