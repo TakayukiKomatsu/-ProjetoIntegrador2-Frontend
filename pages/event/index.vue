@@ -7,21 +7,20 @@
     >
     <v-data-table :headers="headers" :items="events" class="content">
       <template #item.startDate="{ item }">
-        {{ new Date(formatTime(item.startDate)).toLocaleString('pt-BR', {}) }}
+        {{ new Date(item.startDate).toLocaleString('pt-BR', {}) }}
       </template>
       <template #item.endDate="{ item }">
-        {{ new Date(formatTime(item.endDate)).toLocaleString('pt-BR', {}) }}
+        {{ new Date(item.endDate).toLocaleString('pt-BR', {}) }}
       </template>
 
       <template #item.ACTime="{ item }">
-        {{ new Date(formatTime(item.ACTime)).toLocaleString('pt-BR', {}) }}
+        {{ new Date(item.ACTime).toLocaleString('pt-BR', {}) }}
       </template>
     </v-data-table>
   </v-container>
 </template>
 
 <script>
-import { addHours } from 'date-fns'
 export default {
   data() {
     return {
@@ -69,7 +68,7 @@ export default {
       this.events = data
     },
     formatTime(time) {
-      return addHours(new Date(time), 3)
+      return new Date(time)
     },
   },
 }

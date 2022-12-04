@@ -3,7 +3,7 @@
   <v-container class="fill-height align-start" fluid>
     <v-data-table :headers="headers" :items="events" class="content">
       <template #item.time="{ item }">
-        {{ new Date(formatTime(item.time)).toLocaleString('pt-BR', {}) }}
+        {{ new Date(item.time).toLocaleString('pt-BR', {}) }}
       </template>
     </v-data-table>
   </v-container>
@@ -45,9 +45,6 @@ export default {
         `/sensorData/${this.$route.params.id}`
       )
       this.events = data
-    },
-    formatTime(time) {
-      return addHours(new Date(time), 3)
     },
   },
 }

@@ -5,29 +5,15 @@
         <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
           <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
-        <v-select
-          v-model="type"
-          :items="types"
-          dense
-          outlined
-          hide-details
-          class="ma-2"
-          label="type"
-        ></v-select>
+        <v-select v-model="type" :items="types" dense outlined hide-details class="ma-2" label="type"></v-select>
         <v-btn icon class="ma-2" @click="$refs.calendar.next()">
           <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </v-sheet>
       <v-sheet>
         <v-calendar
-          ref="calendar"
-          v-model="value"
-          :type="type"
-          :events="events"
-          :event-overlap-mode="mode"
-          :event-overlap-threshold="30"
-          @change="getEvents"
-        ></v-calendar>
+ref="calendar" v-model="value" :type="type" :events="events" :event-overlap-mode="mode"
+          :event-overlap-threshold="30" @change="getEvents"></v-calendar>
       </v-sheet>
     </v-col>
   </v-row>
@@ -67,14 +53,9 @@ export default {
     },
     formatTime(time) {
       const formatedTIme = format(
-        addHours(new Date(time), 3),
+        new Date(time),
         'yyyy-MM-dd HH:mm'
       )
-      console.log(
-        '🚀 ~ file: index.vue:73 ~ formatTime ~ formatedTIme',
-        formatedTIme
-      )
-
       return formatedTIme
     },
     async getEvents() {
